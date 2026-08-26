@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Roshni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF6F0;
+    --blush:#F6D9DE;
+    --rose:#D98FA3;
+    --wine:#7A2E42;
+    --wine-deep:#5A1F30;
+    --gold:#C9A66B;
+    --paper:#FFFBF7;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:linear-gradient(180deg,var(--cream) 0%, var(--blush) 45%, var(--cream) 100%);
+    font-family:'Cormorant Garamond', serif;
+    color:var(--wine-deep);
+    overflow-x:hidden;
+  }
+
+  /* ---------- floating petals ---------- */
+  #petals{
+    position:fixed; inset:0; pointer-events:none; z-index:5; overflow:hidden;
+  }
+  .petal{
+    position:absolute; top:-5%;
+    font-size:1.2rem;
+    opacity:0.75;
+    animation-name:fall;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+    will-change:transform;
+  }
+  @keyframes fall{
+    0%{ transform:translateY(-10vh) translateX(0) rotate(0deg); }
+    100%{ transform:translateY(110vh) translateX(var(--drift,40px)) rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .petal{ animation:none; display:none; }
+  }
+
+  section{
+    position:relative;
+    padding:6rem 1.5rem;
+    max-width:900px;
+    margin:0 auto;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding-top:2rem;
+  }
+  .eyebrow{
+    font-family:'Poppins', sans-serif;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    font-size:0.7rem;
+    color:var(--rose);
+    margin-bottom:1.2rem;
+  }
+  .hero h1{
+    font-family:'Parisienne', cursive;
+    font-size:clamp(3.2rem, 11vw, 7rem);
+    color:var(--wine);
+    margin:0;
+    line-height:1;
+    text-shadow:0 2px 18px rgba(217,143,163,0.35);
+  }
+  .hero .names{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:clamp(1rem, 2.6vw, 1.4rem);
+    color:var(--wine-deep);
+    opacity:0.75;
+    margin-top:0.8rem;
+    letter-spacing:0.04em;
+  }
+  .hero .sub{
+    margin-top:2.2rem;
+    font-size:clamp(1rem, 2vw, 1.25rem);
+    max-width:520px;
+    color:var(--wine-deep);
+    opacity:0.85;
+  }
+  .scroll-cue{
+    margin-top:3.5rem;
+    font-family:'Poppins', sans-serif;
+    font-size:0.65rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--rose);
+    display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+    animation:bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(8px);} }
+  .scroll-cue .line{ width:1px; height:34px; background:linear-gradient(var(--rose), transparent); }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-title{
+    text-align:center;
+    font-family:'Parisienne', cursive;
+    color:var(--wine);
+    font-size:clamp(2.2rem, 5vw, 3.2rem);
+    margin:0 0 2.5rem 0;
+  }
+
+  /* ---------- LETTER ---------- */
+  .letter-wrap{
+    position:relative;
+  }
+  .letter{
+    background:var(--paper);
+    border-radius:6px;
+    padding:clamp(2rem, 5vw, 4rem);
+    box-shadow:0 25px 60px -20px rgba(122,46,66,0.35), 0 0 0 1px rgba(201,166,107,0.25);
+    position:relative;
+  }
+  .letter::before{
+    content:"";
+    position:absolute; inset:14px;
+    border:1px solid rgba(201,166,107,0.4);
+    pointer-events:none;
+    border-radius:2px;
+  }
+  .letter p{
+    font-size:clamp(1.05rem, 1.7vw, 1.28rem);
+    line-height:1.85;
+    margin:0 0 1.3rem 0;
+    color:var(--wine-deep);
+  }
+  .letter p:last-child{ margin-bottom:0; }
+  .signoff{
+    margin-top:2rem;
+    font-family:'Algerian';
+    font-size:1.8rem;
+    color:var(--wine);
+    text-align:right;
+  }
+
+  .seal{
+    width:70px; height:70px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #b1425f, var(--wine-deep));
+    position:absolute;
+    left:50%; top:-35px; transform:translateX(-50%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 18px rgba(90,31,48,0.5);
+    font-size:1.6rem;
+  }
+
+  /* ---------- LOCKET / SLIDESHOW ---------- */
+  .locket-section{ text-align:center; }
+  .locket{
+    position:relative;
+    width:min(340px, 78vw);
+    aspect-ratio:3/4;
+    margin:0 auto;
+    border-radius:170px 170px 12px 12px;
+    padding:14px;
+    background:linear-gradient(160deg, var(--gold), #a9834f 45%, var(--gold));
+    box-shadow:0 30px 60px -20px rgba(122,46,66,0.45);
+  }
+  .locket-inner{
+    width:100%; height:100%;
+    border-radius:160px 160px 6px 6px;
+    overflow:hidden;
+    position:relative;
+    background:#fff;
+    border:2px solid rgba(255,255,255,0.6);
+  }
+  .locket-inner img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    opacity:0;
+    transition:opacity 1.2s ease;
+  }
+  .locket-inner img.active{ opacity:1; }
+  .locket-inner .placeholder-msg{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:1.5rem;
+    font-family:'Poppins', sans-serif;
+    font-size:0.8rem;
+    color:var(--rose);
+    background:#fff8f5;
+  }
+  .dots{
+    display:flex; justify-content:center; gap:10px; margin-top:1.8rem;
+  }
+  .dot{
+    width:9px; height:9px; border-radius:50%;
+    background:rgba(122,46,66,0.25);
+    cursor:pointer;
+    transition:background 0.3s, transform 0.3s;
+  }
+  .dot.active{ background:var(--wine); transform:scale(1.25); }
+  .caption{
+    margin-top:1.6rem;
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    color:var(--wine-deep);
+    opacity:0.8;
+    font-size:1.05rem;
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    text-align:center;
+    padding-bottom:8rem;
+  }
+  .closing h2{
+    font-family:'Parisienne', cursive;
+    font-size:clamp(2.4rem, 7vw, 4.2rem);
+    color:var(--wine);
+    margin:0 0 1rem 0;
+  }
+  .closing p{
+    font-size:1.15rem;
+    max-width:480px;
+    margin:0 auto;
+    opacity:0.85;
+  }
+  .hearts-row{ margin-top:1.5rem; font-size:1.4rem; letter-spacing:0.4rem; }
+
+  /* ---------- MUSIC CONTROL ---------- */
+  .music-fab{
+    position:fixed;
+    right:1.4rem; bottom:1.4rem;
+    z-index:50;
+    width:60px; height:60px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #b1425f, var(--wine-deep));
+    box-shadow:0 10px 25px rgba(90,31,48,0.45);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    border:none;
+    color:#fff8f0;
+    font-size:1.4rem;
+    transition:transform 0.3s ease;
+  }
+  .music-fab:hover{ transform:scale(1.08); }
+  .music-fab.playing{ animation:pulse 2s ease-in-out infinite; }
+  @keyframes pulse{
+    0%,100%{ box-shadow:0 10px 25px rgba(90,31,48,0.45); }
+    50%{ box-shadow:0 10px 32px rgba(90,31,48,0.75), 0 0 0 8px rgba(217,143,163,0.18); }
+  }
+  .music-hint{
+    position:fixed;
+    right:5.6rem; bottom:1.9rem;
+    z-index:50;
+    background:var(--wine-deep);
+    color:#fff6f0;
+    font-family:'Poppins', sans-serif;
+    font-size:0.7rem;
+    padding:0.5rem 0.8rem;
+    border-radius:8px;
+    opacity:0.9;
+    max-width:170px;
+  }
+
+  footer{
+    text-align:center;
+    padding:2rem 1rem 3rem;
+    font-family:'Poppins', sans-serif;
+    font-size:0.7rem;
+    letter-spacing:0.15em;
+    color:var(--rose);
+    opacity:0.7;
+  }
+</style>
+</head>
+<body>
+
+<div id="petals"></div>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="eyebrow">18th Birthday • Made with love</div>
+  <h1>Roshni</h1>
+  <div class="names">mo Dhulu &middot; mera dilka tukda &middot; mo dhana</div>
+  <p class="sub">A little corner of the internet, just for you, my everything. ✨</p>
+  <div class="scroll-cue"><span class="line"></span>scroll</div>
+</section>
+
+<!-- ================= LETTER ================= -->
+<section>
+  <h2 class="section-title">For You</h2>
+  <div class="letter-wrap">
+    <div class="seal">💌</div>
+    <div class="letter">
+      <!-- ============================================================
+           EDIT YOUR MESSAGE BELOW.
+           Each <p>...</p> is one paragraph. Add or remove paragraphs
+           as you like — just keep the <p> and </p> tags around each one.
+           ============================================================ -->
+      <p>Many many happy returns of the day mo dhana✨, sweet heart💞, mera dilka tukda💝, mo dhulu😁, Roshni🥰, Krishna😍 and whatever you may be, ur my special person🫂 my everything. U r that I can't imagine — ki tame mo life re jemiti swarga ru apsari, mo rani👸 pari asila.</p>
+
+      <p>Mu imagine bi kariparuni ki tame mote ete bhala paucha au mu bii. Tama mindset au tama behaviour au tama loyalty😊 mate bahut impress karithila. Mu sabubele soila bele tama katha mane pade🥹.... Kn karibi, tame jaha photo patheicha seita dekhiki mo mind ku stable kare🥺, and also tame jebethu kahila tame kebala mora boli😌 and kebe chadiki jibini setebele mote ei katha suni khusi lagila😊 and sebethu au mu kichi overthinking karuni. Tame mo pain sabu kichi🤗</p>
+
+      <p>I LOVE U DHULU, I love u Krishna, I love u mo dil ka tukda💗. Mu etiki sure karki kahuchi 101% mu tamaku bi kebe chadiki jibini — eta mu sure kari kahuchi.</p>
+
+      <p>Again 18th Birthday mo janeman🎉🥳. Kn karibi tamaku dekha karibaku prabala icha achi, but mu gharu kichi risk nabaku chahuni, kale future re kichi problem heipare. So mu try karibi ei dasahara re kpd jiba pain... Mu bi janichi tamara bi prabala icha thibaa.... But kn karibi, mu jou situation re achi, tame bi dekhiki kahiba na, asani risk achi... But mu try karibi tamaku dekha kariba pain.</p>
+
+      <p>Au hn, eita gote katha ki jadi amara kali ki jhagada hue, ame fuijana — hin solve kariba, no ego, love eita amara. Au hn, ei katha lekhila belaku, sei dina jou sakalu uthiki jou 5.00 sakalu katha hue, mora mane padi jauchi, kete risk re au kete khusi re katha hauthile.. and haan, tama effort ku manibaku padiba, jemiti ki personal phn na thaiki tame call karucha, chat karucha, time bahar karucha — mo pain manibaku padiba😘🥹❤️.</p>
+
+      <p>Ebe amara jemiti relationship struggle hauchi, mate laguchi bhagawan amaku test karuchanti — ame kete strong rahiparuche ki nahi. Ete jhagada dekhi mate olta dara lage ki tame mate chadiki na palao, and ete kasta mu dabaku chahenii. Bass gote jinisa kahibi ki — AME AMA PAST KU BHULI PRESENT RE RAHILE, KIE AMAKU ALGA KARIPARIBENII.</p>
+
+      <p>Mu job paibara success pachare, mo bapa, maa, bhai au tame bi mo pain success ra reason. Au hn, mu etiki sure heiki kahuchi — TAME SUCCESS NA HEBA PAJYANTA, MU TAMA SAHA SABUBELE ACHI AU RAHIBI MADHYA.</p>
+
+      <p>Au mu etk request karuchi — mothu kebe dureiki jibani, mu nahele bhangi padibi. Ama future plan ku ame jaha hele prove kariba... Jemiti ki baha haba purbaru jaga nka darshana au kedarnath sure jiba, jemiti hele au baha haba pare, ta mora gote honeymoon place plan kariki rakhichi jiba buli sethiki sure... And mora icha ladakh tour, tamara au mora, au kie nuha, gote bike re — sirf tum aur mei🥰😊🫂.</p>
+
+      <p>Au last but not least — I LOVE YOU SO MUCH MO DHANA, MY EVERYTHING. I never let u go, my future wife.... Ame prove kariki rahiba (long distance re bi bhala paiba, au successful kariba, duniya ku dekheiba ame kn boli🥰💞😘🥹💗), jemiti bhagawan au baba mama amamanaku dekhiki kahibe naa — emane hin best husband‑wife material🫂❤️.</p>
+
+      <p>That's it.... Au lekhile saribanii, baki gudaka call re kahibi. Enjoy kara, tama deha ku jagiki rakha jemiti kichi asubidha naa hue, and haan, jaha kichi problem hauchi, mate plzz lucheibani, sata kahidaba — jama ragibini, olta mu khusi hebi mate sata katha kahuchantiii.</p>
+
+      <p>And that's all... AGAIN HAPPY BIRTHDAY MY EVERYTHING DEAR DHULU, ROSHNI, KRISHNA💝✨ Ei lekhaku saiti kari rakhibaaa, mo dhana....😘🥰</p>
+
+      <div class="signoff">I LOVEEEEEEEEE YOUUUUUU ROSHNI 💝❤️🫂💗💞🥹😘😘🥳</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PHOTO LOCKET / SLIDESHOW ================= -->
+<section class="locket-section">
+  <h2 class="section-title">Us</h2>
+  <div class="locket">
+    <div class="locket-inner" id="locketInner">
+      <!-- ============================================================
+           ADD YOUR PHOTOS:
+           1. Put your image files inside the "photos" folder next to
+              this index.html file.
+           2. Name them photo1.jpg, photo2.jpg, photo3.jpg ... (or edit
+              the filenames below to match whatever you named them).
+           3. Add or remove <img> lines to match how many photos you have.
+           ============================================================ -->
+      <img src="../static/WhatsApp Image 2026-08-26 at 8.34.49 PM.jpeg" alt="Memory 1" class="slide active" onerror="this.style.display='none'">
+      <img src="../static/WhatsApp Image 2026-08-26 at 8.34.58 PM (1).jpeg" alt="Memory 2" class="slide" onerror="this.style.display='none'">
+      <img src="../static/WhatsApp Image 2026-08-26 at 8.34.58 PM.jpeg" alt="Memory 3" class="slide" onerror="this.style.display='none'">
+      <img src="../static/WhatsApp Image 2026-08-26 at 8.34.59 PM (1).jpeg" alt="Memory 4" class="slide" onerror="this.style.display='none'">
+      <img src="../static/WhatsApp Image 2026-08-26 at 8.34.59 PM.jpeg" alt="Memory 4" class="slide" onerror="this.style.display='none'">
+      <img src="../static/WhatsApp Image 2026-08-26 at 8.35.00 PM (1).jpeg" alt="Memory 4" class="slide" onerror="this.style.display='none'">
+      <img src="../static/WhatsApp Image 2026-08-26 at 8.35.00 PM (2).jpeg" alt="Memory 4" class="slide" onerror="this.style.display='none'">
+      <img src="../static/WhatsApp Image 2026-08-26 at 8.35.00 PM.jpeg" alt="Memory 4" class="slide" onerror="this.style.display='none'">
+      <img src="../static/WhatsApp Image 2026-08-26 at 8.35.01 PM (1).jpeg" alt="Memory 4" class="slide" onerror="this.style.display='none'">
+      <img src="../static/WhatsApp Image 2026-08-26 at 8.35.01 PM (2).jpeg" alt="Memory 4" class="slide" onerror="this.style.display='none'">
+      <img src="../static/WhatsApp Image 2026-08-26 at 8.35.01 PM.jpeg" alt="Memory 4" class="slide" onerror="this.style.display='none'">
+      <div class="placeholder-msg" id="placeholderMsg">
+        Drop your photos into the <b>photos</b> folder<br>and name them photo1.jpg, photo2.jpg...
+      </div>
+    </div>
+  </div>
+  <div class="dots" id="dots"></div>
+  <p class="caption">every picture, a piece of us 🤍</p>
+</section>
+
+<!-- ================= CLOSING ================= -->
+<section class="closing">
+  <h2>Happy Birthday</h2>
+  <p>My everything, my Roshni, my Krishna, my dhulu. Today and always — I'm yours. 🫂</p>
+  <div class="hearts-row">💝 ❤️ 💗 💞 🥹</div>
+</section>
+
+<button class="music-fab" id="musicFab" aria-label="Play background music">▶</button>
+
+<footer>MADE WITH LOVE, FOR YOU</footer>
+
+<!-- ============================================================
+     ADD YOUR MUSIC:
+     1. Put your mp3 file inside the "music" folder next to this
+        index.html file.
+     2. Name it "song.mp3" (or edit the src below to match your
+        filename).
+     ============================================================ -->
+<audio id="bgMusic" loop preload="none">
+  <source src="../static/music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // ---------- floating petals ----------
+  const petalsContainer = document.getElementById('petals');
+  const petalEmojis = ['🌸','💮','🌺','✨'];
+  const petalCount = window.innerWidth < 600 ? 10 : 18;
+  for(let i=0;i<petalCount;i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = petalEmojis[Math.floor(Math.random()*petalEmojis.length)];
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.setProperty('--drift', (Math.random()*80-40)+'px');
+    p.style.animationDuration = (10 + Math.random()*10) + 's';
+    p.style.animationDelay = (Math.random()*10) + 's';
+    p.style.fontSize = (0.8 + Math.random()*0.8) + 'rem';
+    petalsContainer.appendChild(p);
+  }
+
+  // ---------- slideshow ----------
+  const slides = Array.from(document.querySelectorAll('#locketInner img'));
+  const placeholderMsg = document.getElementById('placeholderMsg');
+  const dotsWrap = document.getElementById('dots');
+  let current = 0;
+  let loadedSlides = [];
+
+  function checkLoaded(){
+    loadedSlides = slides.filter(img => img.complete && img.naturalWidth > 0);
+    placeholderMsg.style.display = loadedSlides.length ? 'none' : 'flex';
+    buildDots();
+  }
+
+  function buildDots(){
+    dotsWrap.innerHTML = '';
+    loadedSlides.forEach((img, i) => {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => showSlide(i));
+      dotsWrap.appendChild(d);
+    });
+  }
+
+  function showSlide(index){
+    if(!loadedSlides.length) return;
+    loadedSlides.forEach(img => img.classList.remove('active'));
+    Array.from(dotsWrap.children).forEach(d => d.classList.remove('active'));
+    current = index % loadedSlides.length;
+    loadedSlides[current].classList.add('active');
+    dotsWrap.children[current].classList.add('active');
+  }
+
+  slides.forEach(img => {
+    img.addEventListener('load', checkLoaded);
+    img.addEventListener('error', checkLoaded);
+  });
+  // in case some are already loaded/cached
+  setTimeout(checkLoaded, 300);
+
+  setInterval(() => {
+    if(loadedSlides.length > 1) showSlide(current + 1);
+  }, 4000);
+
+  // ---------- music ----------
+  const music = document.getElementById('bgMusic');
+  const fab = document.getElementById('musicFab');
+  let playing = false;
+
+  fab.addEventListener('click', () => {
+    if(!playing){
+      music.play().then(() => {
+        playing = true;
+        fab.textContent = '❚❚';
+        fab.classList.add('playing');
+      }).catch(() => {
+        fab.textContent = '🎵?';
+        alert('Add your mp3 file to the "music" folder and name it song.mp3 (or update the file path in index.html).');
+      });
+    } else {
+      music.pause();
+      playing = false;
+      fab.textContent = '▶';
+      fab.classList.remove('playing');
+    }
+  });
+</script>
+
+</body>
+</html>
